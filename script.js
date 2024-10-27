@@ -8,7 +8,7 @@ const clearBtn = document.querySelector('#clearBtn');
 // Fetch travel data from the JSON file
 let travelData = [];
 
-fetch('travel_recommendation_api.json')
+fetch('see_love_travel_api.json')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
