@@ -9,7 +9,15 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background: url('images/SLTbackground.jpg') no-repeat center center fixed; /* Replace with the path to your image */
+            background-size: cover;
+            color: #333;
+        }
+
+        /* Overlay for readability */
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 40px;
         }
 
         .navbar {
@@ -45,6 +53,8 @@
             text-align: center;
             font-size: 2.5em;
             margin-bottom: 20px;
+            color: #fff;
+        
         }
 
         form {
@@ -92,7 +102,7 @@
     <!-- Navbar -->
     <div class="navbar">
         <div>
-            <img src="SLTlogo1.jpg" alt="See Love Travel Logo" class="logo"> <!-- Replace with your logo path -->
+            <img src="images/SLTlogo1.jpg" alt="See Love Travel Logo" class="logo"> <!-- Replace with your logo path -->
         </div>
         <div>
             <a href="index.html">Home</a>
@@ -103,6 +113,7 @@
 
     <!-- Contact Us Form -->
     <div class="container">
+        <h1>See Love Travel</h1>
         <h1>Contact Us</h1>
         <form>
             <label for="name">Your Name</label>
