@@ -64,8 +64,9 @@ function handleSearch() {
         country: ['country', 'countries']
     };
 
+    console.log("before fetchData")
     fetchData() 
-
+    console.log("after fetchData")
     // Filter recommendations based on the search query
     const filteredRecommendations = travelData.filter(item => {
         const nameMatch = item.name.toLowerCase().includes(searchQuery);
