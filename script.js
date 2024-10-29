@@ -1,4 +1,4 @@
-// Select HTML elements
+/ Select HTML elements
 const searchResultsContainer = document.querySelector('.search-results');
 const searchInput = document.querySelector('#searchInput');
 const searchBtn = document.querySelector('#searchBtn');
@@ -8,7 +8,9 @@ const clearBtn = document.querySelector('#clearBtn');
 // Fetch travel data from the JSON file
 let travelData = [];
 
-fetch('see_love_travel_api.json')
+async function fetchData() {
+    console.log("fetching")
+    let response = await fetch("see_love_travel_api.json")
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -22,6 +24,7 @@ fetch('see_love_travel_api.json')
     .catch(error => {
         console.error('Fetch operation failed:', error);
     });
+}
 
 // Function to display travel recommendations
 function displayRecommendations(recommendations) {
@@ -46,7 +49,6 @@ function displayRecommendations(recommendations) {
     }
 }
 
-// Function to handle keyword search
 function handleSearch() {
     const searchQuery = searchInput.value.toLowerCase().trim();
 
@@ -62,6 +64,8 @@ function handleSearch() {
         country: ['country', 'countries']
     };
 
+    fetchData() 
+
     // Filter recommendations based on the search query
     const filteredRecommendations = travelData.filter(item => {
         const nameMatch = item.name.toLowerCase().includes(searchQuery);
@@ -76,11 +80,11 @@ function handleSearch() {
         return nameMatch || descriptionMatch || keywordMatch;
     });
 
-    // Display the filtered recommendations
-    displayRecommendations(filteredRecommendations);
-}
 
-// Function to clear search results
+    // Display the filtered recommendations
+    displayRecommendations(results);
+
+    // Function to clear search results
 function clearResults() {
     searchResultsContainer.innerHTML = ''; // Clear the search results
 }
