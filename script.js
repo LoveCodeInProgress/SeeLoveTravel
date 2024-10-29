@@ -1,4 +1,4 @@
-/ Select HTML elements
+// Select HTML elements
 const searchResultsContainer = document.querySelector('.search-results');
 const searchInput = document.querySelector('#searchInput');
 const searchBtn = document.querySelector('#searchBtn');
@@ -81,6 +81,7 @@ function handleSearch() {
 
     // Display the filtered recommendations
     displayRecommendations(results);
+}
 
     // Function to clear search results
 function clearResults() {
@@ -94,3 +95,4 @@ resetBtn.addEventListener('click', () => {
     searchResultsContainer.innerHTML = ''; // Clear the search results
 });
 clearBtn.addEventListener('click', clearResults); // Clear button listener (only clears results)
+
