@@ -9,22 +9,19 @@ const clearBtn = document.querySelector('#clearBtn');
 let travelData = [];
 
 async function fetchData() {
-    console.log("fetching")
-    let response = await fetch("see_love_travel_api.json")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        travelData = data; // Store the fetched data
-        console.log(travelData); // Log data for debugging
-    })
-    .catch(error => {
-        console.error('Fetch operation failed:', error);
-    });
-}
+    console.log("fetching");
+    try {
+      const response = await fetch("see_love_travel_api.json");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      travelData = data;
+      console.log(travelData);
+    } catch (error) {
+      console.error("Fetch operation failed:", error);
+    }
+  }
 
 // Function to display travel recommendations
 function displayRecommendations(recommendations) {
