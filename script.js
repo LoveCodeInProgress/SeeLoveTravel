@@ -8,6 +8,8 @@ const clearBtn = document.querySelector('#clearBtn');
 // Fetch travel data from the JSON file
 let travelData = [];
 
+fetchData();
+
 async function fetchData() {
     console.log("fetching");
     try {
@@ -47,36 +49,32 @@ function displayRecommendations(recommendations) {
 }
 
 function handleSearch() {
-    const searchQuery = searchInput.value.toLowerCase().trim();
+    const keyword = searchInput.value.toLowerCase().trim();
 
-    if (searchQuery === '') {
+    if (keyword === '') {
         searchResultsContainer.innerHTML = '<p>Please enter a keyword to search.</p>';
         return;
     }
 
-    // Keyword variations for beaches, temples, and countries
-    const keywords = {
-        beach: ['beach', 'beaches'],
-        temple: ['temple', 'temples'],
-        country: ['country', 'countries']
-    };
-
-    console.log("before fetchData")
-    fetchData() 
-    console.log("after fetchData")
     // Filter recommendations based on the search query
-    const filteredRecommendations = travelData.filter(item => {
-        const nameMatch = item.name.toLowerCase().includes(searchQuery);
-        const descriptionMatch = item.description.toLowerCase().includes(searchQuery);
+    let results = [];
 
-        const keywordMatch = (
-            keywords.beach.includes(searchQuery) && item.description.toLowerCase().includes('beach') ||
-            keywords.temple.includes(searchQuery) && item.description.toLowerCase().includes('temple') ||
-            keywords.country.includes(searchQuery) && item.description.toLowerCase().includes('country')
-        );
+    if (keyword === "beach" || keyword === "beaches") {
+        console.log("Beach");
+        results = travelData.beaches;
+    } else if (keyword === "temple" || keyword === "temples") {
+        results = travelData.temples;
+    } else {
+        travelData.countries.forEach((country) => {
+            if (country.name.toLowerCase().includes(keyword)) {
+                results.push(...country.cities);
+            }
+        });
+    }
 
-        return nameMatch || descriptionMatch || keywordMatch;
-    });
+    // Display the filtered recommendations
+    displayRecommendations(results);
+}
 
 
     // Display the filtered recommendations
