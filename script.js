@@ -13,17 +13,16 @@ fetchData();
 async function fetchData() {
     console.log("fetching");
     try {
-      const response = await fetch("see_love_travel_api.json");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      travelData = data;
-      console.log(travelData);
+        const response = await fetch("see_love_travel_api.json");
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        travelData = await response.json();
+        console.log(travelData);
     } catch (error) {
-      console.error("Fetch operation failed:", error);
+        console.error("Fetch operation failed:", error);
     }
-  }
+}
 
 // Function to display travel recommendations
 function displayRecommendations(recommendations) {
@@ -48,6 +47,7 @@ function displayRecommendations(recommendations) {
     }
 }
 
+// Function to handle keyword search
 function handleSearch() {
     const keyword = searchInput.value.toLowerCase().trim();
 
@@ -76,12 +76,7 @@ function handleSearch() {
     displayRecommendations(results);
 }
 
-
-    // Display the filtered recommendations
-    displayRecommendations(results);
-}
-
-    // Function to clear search results
+// Function to clear search results
 function clearResults() {
     searchResultsContainer.innerHTML = ''; // Clear the search results
 }
@@ -93,4 +88,3 @@ resetBtn.addEventListener('click', () => {
     searchResultsContainer.innerHTML = ''; // Clear the search results
 });
 clearBtn.addEventListener('click', clearResults); // Clear button listener (only clears results)
-
